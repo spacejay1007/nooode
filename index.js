@@ -27,6 +27,21 @@ app.get("/dog", (req, res) => {
   // res.send("dog");
 });
 
+// /** get Params 로 활용한 방법 */
+// app.get("/dog/:id", (req, res) => {
+//   // localhost:3000/dog/4
+//   const q = req.params;
+
+//   res.json({ userId: q.id });
+// });
+
+/** query문으로 작성하는 방법 */
+app.get("/dog/:id", (req, res) => {
+  //http://localhost:3000/dog/4?q=jay&answer=mew
+  console.log(req.id);
+});
+
+// 참고 사항 > URL 에 한글을 넣으려면 Decode , Encode 을 해야함
 app.get("/cat", (req, res) => {
   res.send({ sound: "mew" });
 });
