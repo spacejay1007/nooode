@@ -10,8 +10,11 @@
 // });
 
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = 4000;
+
+app.use(cors()); // app.use > app 에 사용하겠다는 것을 말함 > cors(조건) 비워두면 모두 허용
 
 // terminal > node index.js > 크롬에서 localhost:3000
 
@@ -50,11 +53,15 @@ app.get("/cat", (req, res) => {
 app.get("/sound/:name", (req, res) => {
   const { name } = req.params; // const animalsSound = req.params
 
-  if (name === "dog") res.json({ sound: "mung" });
-  if (name === "cat") res.json({ sound: "yaOng" });
-  if (name === "pig") res.json({ sound: "ggulggul" });
-
-  res.send({ sound: "mew" });
+  if (name === "dog") {
+    res.json({ sound: "mung" });
+  } else if (name === "cat") {
+    res.json({ sound: "yaOng" });
+  } else if (name === "pig") {
+    res.json({ sound: "ggulggul" });
+  } else {
+    res.send({ sound: "none" });
+  }
 });
 
 app.listen(port, () => {
