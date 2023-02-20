@@ -11,7 +11,7 @@
 
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // terminal > node index.js > 크롬에서 localhost:3000
 
@@ -43,6 +43,17 @@ app.get("/dog/:id", (req, res) => {
 
 // 참고 사항 > URL 에 한글을 넣으려면 Decode , Encode 을 해야함
 app.get("/cat", (req, res) => {
+  res.send({ sound: "mew" });
+});
+
+// 예제!
+app.get("/sound/:name", (req, res) => {
+  const { name } = req.params; // const animalsSound = req.params
+
+  if (name === "dog") res.json({ sound: "mung" });
+  if (name === "cat") res.json({ sound: "yaOng" });
+  if (name === "pig") res.json({ sound: "ggulggul" });
+
   res.send({ sound: "mew" });
 });
 
